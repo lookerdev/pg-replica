@@ -1,0 +1,176 @@
+# The name of this view in Looker is "Shopify Fulfillments"
+view: shopify_fulfillments {
+  # The sql_table_name parameter indicates the underlying database table
+  # to be used for all fields in this view.
+  sql_table_name: public.shopify_fulfillments ;;
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
+
+  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+
+  dimension_group: _sdc_batched {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."_sdc_batched_at" ;;
+  }
+
+  # Here's what a typical dimension looks like in LookML.
+  # A dimension is a groupable field that can be used to filter query results.
+  # This dimension will be called " Sdc Level 0 ID" in Explore.
+
+  dimension: _sdc_level_0_id {
+    type: string
+    sql: ${TABLE}."_sdc_level_0_id" ;;
+  }
+
+  dimension_group: _sdc_received {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."_sdc_received_at" ;;
+  }
+
+  dimension: _sdc_sequence {
+    type: number
+    sql: ${TABLE}."_sdc_sequence" ;;
+  }
+
+  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
+  # measures for this dimension, but you can also add measures of many different aggregates.
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
+  measure: total__sdc_sequence {
+    type: sum
+    sql: ${_sdc_sequence} ;;
+  }
+
+  measure: average__sdc_sequence {
+    type: average
+    sql: ${_sdc_sequence} ;;
+  }
+
+  dimension: _sdc_source_key_id {
+    type: string
+    sql: ${TABLE}."_sdc_source_key_id" ;;
+  }
+
+  dimension: _sdc_table_version {
+    type: number
+    sql: ${TABLE}."_sdc_table_version" ;;
+  }
+
+  dimension: admin_graphql_api_id {
+    type: string
+    sql: ${TABLE}."admin_graphql_api_id" ;;
+  }
+
+  dimension_group: created {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."created_at" ;;
+  }
+
+  dimension: fulfillment_id {
+    type: string
+    # hidden: yes
+    sql: ${TABLE}."fulfillment_id" ;;
+  }
+
+  dimension: fulfillment_name {
+    type: string
+    sql: ${TABLE}."fulfillment_name" ;;
+  }
+
+  dimension: location_id {
+    type: string
+    sql: ${TABLE}."location_id" ;;
+  }
+
+  dimension: order_id {
+    type: string
+    sql: ${TABLE}."order_id" ;;
+  }
+
+  dimension: order_name {
+    type: string
+    sql: ${TABLE}."order_name" ;;
+  }
+
+  dimension: service {
+    type: string
+    sql: ${TABLE}."service" ;;
+  }
+
+  dimension: shipment_status {
+    type: string
+    sql: ${TABLE}."shipment_status" ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}."status" ;;
+  }
+
+  dimension: store {
+    type: string
+    sql: ${TABLE}."store" ;;
+  }
+
+  dimension: tracking_company {
+    type: string
+    sql: ${TABLE}."tracking_company" ;;
+  }
+
+  dimension: tracking_number {
+    type: string
+    sql: ${TABLE}."tracking_number" ;;
+  }
+
+  dimension: tracking_url {
+    type: string
+    sql: ${TABLE}."tracking_url" ;;
+  }
+
+  dimension_group: updated {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}."updated_at" ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [order_name, fulfillment_name, fulfillments.id]
+  }
+}

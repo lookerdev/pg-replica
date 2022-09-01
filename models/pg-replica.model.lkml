@@ -25,60 +25,60 @@ persist_with: pg-replica_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: amazon_seller_athena {}
+# explore: amazon_seller_athena {}
 
-explore: amazon_vendor {}
+# explore: amazon_vendor {}
 
-explore: country_mapping {}
+# explore: country_mapping {}
 
-explore: country_name {}
+# explore: country_name {}
 
-explore: currency_exchange_rate {}
+# explore: currency_exchange_rate {}
 
-explore: fulfillments {}
+# explore: fulfillments {}
 
-explore: journal_entry_details {}
+# explore: journal_entry_details {}
 
-explore: netsuite_customer_address {}
+# explore: netsuite_customer_address {}
 
-explore: netsuite_fulfillments {}
+# explore: netsuite_fulfillments {}
 
-explore: netsuite_fulfillments_line_items {}
+# explore: netsuite_fulfillments_line_items {}
 
-explore: netsuite_orders {}
+# explore: netsuite_orders {}
 
-explore: netsuite_orders_line_items {}
+# explore: netsuite_orders_line_items {}
 
-explore: netsuite_vendors_view {}
+# explore: netsuite_vendors_view {}
 
-explore: shopify_customers {}
+# explore: shopify_customers {}
 
-explore: shopify_fulfillments {
-  join: fulfillments {
-    type: left_outer
-    sql_on: ${shopify_fulfillments.fulfillment_id} = ${fulfillments.id} ;;
-    relationship: many_to_one
-  }
-}
+# explore: shopify_fulfillments {
+#   join: fulfillments {
+#     type: left_outer
+#     sql_on: ${shopify_fulfillments.fulfillment_id} = ${fulfillments.id} ;;
+#     relationship: many_to_one
+#   }
+# }
 
-explore: shopify_fulfillments_line_items {
-  join: fulfillments {
-    type: left_outer
-    sql_on: ${shopify_fulfillments_line_items.fulfillment_id} = ${fulfillments.id} ;;
-    relationship: many_to_one
-  }
-}
+# explore: shopify_fulfillments_line_items {
+#   join: fulfillments {
+#     type: left_outer
+#     sql_on: ${shopify_fulfillments_line_items.fulfillment_id} = ${fulfillments.id} ;;
+#     relationship: many_to_one
+#   }
+# }
 
-explore: shopify_order_refunds_refund_line_items {}
+# explore: shopify_order_refunds_refund_line_items {}
 
-explore: shopify_orders {}
+# explore: shopify_orders {}
 
-explore: shopify_orders_line_items {}
+# explore: shopify_orders_line_items {}
 
-explore: shopify_orders_note_attributes {}
+# explore: shopify_orders_note_attributes {}
 
-explore: shopify_products {}
+# explore: shopify_products {}
 
-explore: sku_mapping {}
+# explore: sku_mapping {}
 
-explore: starin_line_items {}
+# explore: starin_line_items {}
